@@ -38,7 +38,7 @@ export function DialogDemo({
     >
         
       <form >
-        <DialogContent className="sm:max-w-106.25">
+        <DialogContent className="sm:max-w-106.25 ">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>

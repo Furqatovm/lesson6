@@ -27,6 +27,7 @@ const App = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null)
   const [editValue, setEditValue] =useState("")
 
+  const date =new Date();
 
   console.log(title)
 
@@ -62,7 +63,7 @@ const App = () => {
         body: {
           title: payload.title,
           isEdited: true,
-          editedTime: new Date().toISOString(),
+          editedTime: `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} : ${date.getHours()}: ${date.getMinutes()}`,
         },
       }),
   
@@ -108,7 +109,7 @@ const App = () => {
         setTitle("");
       }}
         className="flex justify-between items-center">
-       <Input onChange={(e)=>setTitle(e.target.value)} value={title} className="w-[80%] text-white" />
+       <Input onChange={(e)=>setTitle(e.target.value)} value={title} className="w-[80%] dark:text-white white:text-black" />
        <Button type="submit" className="w-[18%] cursor-pointer">Add</Button>
        </form>
 

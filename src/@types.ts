@@ -4,6 +4,7 @@ export interface TodoType {
     isDone:boolean;
     isEdited:boolean;
     editedTime:string;
+    createdTime:string;
 }
 
 export interface QueryType<T>{

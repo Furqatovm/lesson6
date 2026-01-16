@@ -9,7 +9,8 @@ type TodosProps = TodoType & {
     onEdit:() =>void
   };
 
-const Todos = ({id, title,  onDelete, onEdit}:TodosProps) => {
+const Todos = ({id, title, editedTime, createdTime, isEdited,  onDelete, onEdit}:TodosProps) => {
+  const date =new Date()
   return (
     <Alert className="flex justify-between">
 
@@ -19,6 +20,18 @@ const Todos = ({id, title,  onDelete, onEdit}:TodosProps) => {
           <span className="dark:text-white light:text-black">{title}</span>
 
           </div>
+
+         <div className="flex gap-2 items-center">
+         <span>
+            {isEdited? 
+            editedTime:
+     `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} : ${date.getHours()}: ${date.getMinutes()}`
+            }
+          </span>
+          <span className="text-center text-[8px]  dark:text-yellow-300 text-red-300">
+            {isEdited ? "edited" :""}
+          </span>
+         </div>
 
 
         
