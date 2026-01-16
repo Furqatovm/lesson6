@@ -1,4 +1,4 @@
-import type { TodoType } from "@/@types";
+import type { TodoType } from "./../@types";
 import { Checkbox } from "../components/ui/checkbox";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";

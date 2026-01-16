@@ -18,12 +18,9 @@ import { Progress } from "./components/ui/progress";
 
 
 const App = () => {
-  const {data, isLoading, isPending}: QueryType<TodoType[]> =useQueryHandler({url:"todo", pathname:"todo"});
+  const {data,  isPending}: QueryType<TodoType[]> =useQueryHandler({url:"todo", pathname:"todo"});
 
   const [title, setTitle] =useState("");
-  const [isDone, setIsdone] =useState(false);
-  const [isEdited, setIsEdited] =useState(false);
-  const [editedTime, setEditedTime] =useState("");
   const [isOpenModal, setIsOpen] =useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null)
   const [editValue, setEditValue] =useState("")
@@ -105,9 +102,9 @@ const App = () => {
         if (!title.trim()) return; 
         addTodoMutation.mutate({
           title: title.trim(),
-          isDone: isDone,
-          isEdited: isEdited,
-          editedTime: editedTime,
+          isDone: false,
+          isEdited: false,
+          editedTime: "",
           createdTime:`${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} : ${date.getHours()}: ${date.getMinutes()}`
         });
         setTitle("");
@@ -134,7 +131,7 @@ const App = () => {
           onDelete={(id) => deleteMutation.mutate(id)}
           openModel ={openModal}
           onEdit={() => {
-            setSelectedId(val.id)
+            setSelectedId(val.id as number)
             setEditValue(val.title)
             setIsOpen(true)
           }}

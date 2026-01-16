@@ -3,14 +3,12 @@ export interface TodoType {
     title:string;
     isDone:boolean;
     isEdited:boolean;
-    editedTime:string;
+    editedTime:string|null;
     createdTime:string;
 }
 
-export interface QueryType<T>{
-    data?:T[];
-    isLoading:boolean;
-    isPending?:boolean;
-}
-
-
+export interface QueryType<T> {
+    data?: T;
+    isLoading: boolean;
+    isPending?: boolean;
+  }
