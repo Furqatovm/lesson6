@@ -10,6 +10,7 @@ import { useAxios } from "./components/hooks/useAxios";
 import { DialogDemo } from "./components/modal";
 import { ThemeProvider } from "./components/theme-provider"
 import { ModeToggle } from "./components/mode-toggle";
+import { Progress } from "./components/ui/progress";
 
 
 
@@ -77,6 +78,8 @@ const App = () => {
   })
 
 
+  
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -94,7 +97,7 @@ const App = () => {
       <ModeToggle  />
 
       </div>
-      <div className="w-[60%] m-auto py-20">
+      <div className="w-[60%] max-md:w-[80%] max-sm:w-[95%] m-auto py-20">
 
        <form 
        onSubmit={(e) => {
@@ -105,15 +108,17 @@ const App = () => {
           isDone: isDone,
           isEdited: isEdited,
           editedTime: editedTime,
+          createdTime:`${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} : ${date.getHours()}: ${date.getMinutes()}`
         });
         setTitle("");
       }}
         className="flex justify-between items-center">
-       <Input onChange={(e)=>setTitle(e.target.value)} value={title} className="w-[80%] dark:text-white white:text-black" />
+       <Input onChange={(e)=>setTitle(e.target.value)} value={title} className="w-[80%] max-md:w-[90%] dark:text-white white:text-black" />
        <Button type="submit" className="w-[18%] cursor-pointer">Add</Button>
        </form>
 
-       <div className="flex flex-col gap-5 mt-10  w-[80%]   h-[60vh] overflow-y-auto overflowHidden">
+       <div className="flex flex-col gap-5 mt-10  w-[80%] max-md:w-full   h-[60vh] overflow-y-auto overflowHidden">
+        <Progress value={data?.length} />
 
         {data?.length == 0 ?<img src="https://img.freepik.com/premium-vector/modern-design-concept-no-data-found-design_637684-218.jpg?semt=ais_hybrid" alt="" /> :
         ""
@@ -133,7 +138,8 @@ const App = () => {
             setEditValue(val.title)
             setIsOpen(true)
           }}
-        />
+ 
+          />
       ))
       
        }

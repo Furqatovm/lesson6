@@ -37,7 +37,7 @@ export function DialogDemo({
     <Dialog open ={open} onOpenChange={onOpenChange}
     >
         
-      <form >
+      <form  >
         <DialogContent className="sm:max-w-106.25 ">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
@@ -55,7 +55,7 @@ export function DialogDemo({
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button type="button" onClick={() =>{
+            <Button type="submit" className="cursor-pointer" onClick={() =>{
                 onSave();
                 closeModal()
             }}>{
