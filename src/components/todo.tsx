@@ -4,12 +4,15 @@ import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 type TodosProps = TodoType & {
     onDelete: (id: number) => void;
+    openModel: () => void
+    onEdit:() =>void
   };
 
-const Todos = ({id, title, isDone,editedTime, isEdited, onDelete}:TodosProps) => {
+const Todos = ({id, title,  onDelete, onEdit}:TodosProps) => {
   return (
     <div className="flex justify-between bg-[#171717] p-2 rounded-lg px-3">
 
+            
           <div className="flex gap-3 items-center">
             <Checkbox />
           <span className="text-white">{title}</span>
@@ -17,14 +20,16 @@ const Todos = ({id, title, isDone,editedTime, isEdited, onDelete}:TodosProps) =>
           </div>
 
 
-
+        
           <div className="flex gap-4 items-center">
             <span className="text-white text-[18px]">
-            <MdDelete onClick={()=> onDelete(id)} />
+            <MdDelete onClick={()=> onDelete(id as number)} />
             </span>
 
             <span className="text-white text-[18px]">
-            <MdEdit />
+            <MdEdit  
+            onClick={onEdit}
+             />
             </span>
 
           </div>

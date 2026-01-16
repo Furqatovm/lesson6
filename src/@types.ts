@@ -9,6 +9,7 @@ export interface TodoType {
 export interface QueryType<T>{
     data?:T[];
     isLoading:boolean;
+    isPending?:boolean;
 }
 
 
