@@ -37,7 +37,7 @@ export function DialogDemo({
     <Dialog open ={open} onOpenChange={onOpenChange}
     >
         
-      <form>
+      <form >
         <DialogContent className="sm:max-w-106.25">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>

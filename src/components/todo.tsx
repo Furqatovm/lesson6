@@ -2,6 +2,7 @@ import type { TodoType } from "@/@types";
 import { Checkbox } from "../components/ui/checkbox";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+import { Alert } from "./ui/alert";
 type TodosProps = TodoType & {
     onDelete: (id: number) => void;
     openModel: () => void
@@ -10,30 +11,30 @@ type TodosProps = TodoType & {
 
 const Todos = ({id, title,  onDelete, onEdit}:TodosProps) => {
   return (
-    <div className="flex justify-between bg-[#171717] p-2 rounded-lg px-3">
+    <Alert className="flex justify-between">
 
             
           <div className="flex gap-3 items-center">
             <Checkbox />
-          <span className="text-white">{title}</span>
+          <span className="dark:text-white light:text-black">{title}</span>
 
           </div>
 
 
         
           <div className="flex gap-4 items-center">
-            <span className="text-white text-[18px]">
+            <span className="dark:text-white light:text-black text-[18px] cursor-pointer">
             <MdDelete onClick={()=> onDelete(id as number)} />
             </span>
 
-            <span className="text-white text-[18px]">
-            <MdEdit  
+            <span className="dark:text-white light:text-black text-[18px]">
+            <MdEdit   className="cursor-pointer"
             onClick={onEdit}
              />
             </span>
 
           </div>
-        </div>
+        </Alert>
   )
 }
 

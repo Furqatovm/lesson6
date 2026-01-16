@@ -8,6 +8,8 @@ import { Spinner } from "./components/ui/spinner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAxios } from "./components/hooks/useAxios";
 import { DialogDemo } from "./components/modal";
+import { ThemeProvider } from "./components/theme-provider"
+import { ModeToggle } from "./components/mode-toggle";
 
 
 
@@ -85,20 +87,25 @@ const App = () => {
   
   
   return (
-    <section className="w-screen h-screen bg-black">
+    <ThemeProvider defaultTheme ="dark" storageKey="vite-ui-theme">
+    <section className="w-screen h-screen">
+      <div className="fixed left-5 top-5">
+      <ModeToggle  />
+
+      </div>
       <div className="w-[60%] m-auto py-20">
 
        <form 
        onSubmit={(e) => {
         e.preventDefault();
-        if (!title.trim()) return; // bo‘sh title qo‘shilmasligi uchun
+        if (!title.trim()) return; 
         addTodoMutation.mutate({
           title: title.trim(),
           isDone: isDone,
           isEdited: isEdited,
           editedTime: editedTime,
         });
-        setTitle(""); // inputni tozalash
+        setTitle("");
       }}
         className="flex justify-between items-center">
        <Input onChange={(e)=>setTitle(e.target.value)} value={title} className="w-[80%] text-white" />
@@ -106,6 +113,10 @@ const App = () => {
        </form>
 
        <div className="flex flex-col gap-5 mt-10  w-[80%]   h-[60vh] overflow-y-auto overflowHidden">
+
+        {data?.length == 0 ?<img src="https://img.freepik.com/premium-vector/modern-design-concept-no-data-found-design_637684-218.jpg?semt=ais_hybrid" alt="" /> :
+        ""
+        }
        {isPending ?
        <div className="flex items-center justify-center">
         <Spinner className="text-white" />
@@ -126,7 +137,7 @@ const App = () => {
       
        }
        </div>
-       <DialogDemo
+       <DialogDemo 
         open={isOpenModal}
         onOpenChange={setIsOpen}
         value={editValue}
@@ -145,6 +156,7 @@ const App = () => {
 
       </div>
     </section>
+    </ThemeProvider>
   )
 }
 
